@@ -8,11 +8,11 @@ const server = net.createServer((socket) => {
     unique = unique.toISOString();
     console.log('Unique ' + unique);
     console.log('socket ' + socket);
-    fs.writeFile(__dirname + '/color.txt', chunk, (err) => {
+    fs.writeFile(__dirname + '/newfiles/' + unique + '.txt', chunk, (err) => {
       if (err) throw err;
       console.log('New file created');
     });
   });
 }).listen(3000, () => {
-  process.stdout.write('Server up on 3000 :-)');
+  process.stdout.write('<3 Server up on 3000 :-)');
 });
