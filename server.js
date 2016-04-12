@@ -6,17 +6,16 @@ const server = net.createServer((socket) => {
   socket.on('data', (chunk) => {
     var unique = new Date();
     unique = unique.toISOString();
-    console.log('Unique ' + unique);
-    console.log('socket ' + socket);
+    // console.log('Unique ' + unique);
+    // console.log('socket ' + socket);
     fs.writeFile(__dirname + '/newfiles/' + unique + '.txt', chunk, (err) => {
       if (err) throw err;
       console.log('New file created');
-      socket.end((err, res) => {
-        assert(200 == res.status);
-      });
+      socket.end();
   });
+});
 }).listen(3000, () => {
   process.stdout.write('<3 Server up on 3000 :-)');
-})
+});
 
 module.exports = server;
