@@ -16,3 +16,5 @@ const server = net.createServer((socket) => {
 }).listen(3000, () => {
   process.stdout.write('<3 Server up on 3000 :-)');
 });
+
+module.export = server;
