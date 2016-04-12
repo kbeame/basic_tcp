@@ -11,10 +11,12 @@ const server = net.createServer((socket) => {
     fs.writeFile(__dirname + '/newfiles/' + unique + '.txt', chunk, (err) => {
       if (err) throw err;
       console.log('New file created');
-    });
+      socket.end((err, res) => {
+        assert(200 == res.status);
+      });
   });
 }).listen(3000, () => {
   process.stdout.write('<3 Server up on 3000 :-)');
-});
+})
 
-module.export = server;
+module.exports = server;
