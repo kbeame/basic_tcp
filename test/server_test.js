@@ -10,12 +10,10 @@ describe('should connect to the server', () => {
   var newFiles;
   before(() => {
     server.listen(3000);
-    files = fs.readdirSync(__dirname + '/../newfiles/', (err, files) => {
+    files = fs.readdirSync(__dirname + '/../newfiles/', (err) => {
       if (err) throw err;
     });
-    console.log('files.length ' + files.length);
     files = files.length + 1;
-    console.log(files);
   });
   after(() => {
     server.close();
@@ -25,12 +23,11 @@ describe('should connect to the server', () => {
     chai.request('http://localhost:3000')
     .get('/')
     .end(() => {
-      newFiles = fs.readdirSync(__dirname + '/../newfiles/', (err, files) => {
+      newFiles = fs.readdirSync(__dirname + '/../newfiles/', (err) => {
         if (err) throw err;
       });
-      console.log('newFiles ' + newFiles);
       newFiles = newFiles.length;
-      expect(newFiles.to.eql(files));
+      expect(newFiles).to.eql(files);
       done();
     });
   });
